@@ -11,6 +11,7 @@ const numDigits = digits.length;
 const operator = document.querySelectorAll('.operator');
 const numOperator = operator.length;
 const equal = document.getElementById('equal');
+const reset = document.getElementById('reset');
 
 
 // seleziono tutti i bottoni che contengono numeri e faccio fare qualcosa al click
@@ -36,19 +37,31 @@ function operators() {
     }
 }
 
-
-
-function calculator() {
+function calcResult() {
     operators();
     equal.addEventListener('click', function () {
         secondNumber = numberOnScreen;
         screen.innerHTML = '';
         numberOnScreen = '';
-        total = eval(Number(firstNumber) + selectedOperator + Number(secondNumber));
+        total = eval(firstNumber + selectedOperator + secondNumber);
         screen.innerHTML = total;
         console.log(firstNumber + selectedOperator + secondNumber + '=' + total);
-
     })
+}
+
+function resetButton() {
+    reset.addEventListener('click', function () {
+        firstNumber = '';
+        secondNumber = '';
+        screen.innerHTML = '0';
+        numberOnScreen = '';
+        total = 0;
+    })
+}
+
+function calculator() {
+    calcResult();
+    resetButton();
 }
 
 calculator();
