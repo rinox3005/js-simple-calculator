@@ -5,10 +5,13 @@ let numberOnScreen = '';
 let firstNumber = '';
 let secondNumber = '';
 let selectedOperator = '';
+let total = 0;
 const digits = document.querySelectorAll('.digit');
 const numDigits = digits.length;
 const operator = document.querySelectorAll('.operator');
 const numOperator = operator.length;
+const equal = document.getElementById('equal');
+
 
 // seleziono tutti i bottoni che contengono numeri e faccio fare qualcosa al click
 function keypad() {
@@ -21,15 +24,31 @@ function keypad() {
 }
 
 // seleziono tutti gli operatori e salvo il valore di quello cliccato in una variabile selectedOperator
-for (let i = 0; i < numOperator; i++) {
-    operator[i].addEventListener('click', function () {
-        keypad();
-        selectedOperator = operator[i].value;
-        firstNumber = numberOnScreen;
-        console.log(selectedOperator);
-        console.log(firstNumber);
+function operators() {
+    keypad();
+    for (let i = 0; i < numOperator; i++) {
+        operator[i].addEventListener('click', function () {
+            selectedOperator = operator[i].value;
+            firstNumber = numberOnScreen;
+            screen.innerHTML = '';
+            numberOnScreen = '';
+        })
+    }
+}
+
+
+
+function calculator() {
+    operators();
+    equal.addEventListener('click', function () {
+        secondNumber = numberOnScreen;
+        screen.innerHTML = '';
+        numberOnScreen = '';
+        total = eval(Number(firstNumber) + selectedOperator + Number(secondNumber));
+        screen.innerHTML = total;
+        console.log(firstNumber + selectedOperator + secondNumber + '=' + total);
 
     })
 }
 
-keypad();
+calculator();
