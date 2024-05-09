@@ -33,22 +33,29 @@ function operators() {
             firstNumber = numberOnScreen;
             screen.innerHTML = '';
             numberOnScreen = '';
+
         })
     }
 }
 
+// calcolo il risultato dell'operazione
 function calcResult() {
     operators();
     equal.addEventListener('click', function () {
         secondNumber = numberOnScreen;
-        screen.innerHTML = '';
-        numberOnScreen = '';
-        total = eval(firstNumber + selectedOperator + secondNumber);
-        screen.innerHTML = total;
-        console.log(firstNumber + selectedOperator + secondNumber + '=' + total);
+        if (selectedOperator === '/' && secondNumber === '0') {
+            screen.innerHTML = 'Error';
+        } else {
+            screen.innerHTML = '';
+            numberOnScreen = '';
+            total = eval(firstNumber + selectedOperator + secondNumber);
+            screen.innerHTML = total;
+            console.log(firstNumber + selectedOperator + secondNumber + '=' + total);
+        }
     })
 }
 
+// resetto i valori a quelli di partenza
 function resetButton() {
     reset.addEventListener('click', function () {
         firstNumber = '';
@@ -59,9 +66,12 @@ function resetButton() {
     })
 }
 
+// richiamo tutte le funzioni che mi servono in un unica funzione calculator
 function calculator() {
     calcResult();
     resetButton();
+
 }
 
+//invoco la funzione calculator
 calculator();
