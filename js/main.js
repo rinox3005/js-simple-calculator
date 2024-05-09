@@ -1,6 +1,8 @@
 'use strict';
-
+// prendo l'elemento con id result
 const screen = document.getElementById('result');
+
+//dichiaro le variabili
 let numberOnScreen = '';
 let firstNumber = '';
 let secondNumber = '';
@@ -45,6 +47,10 @@ function calcResult() {
         secondNumber = numberOnScreen;
         if (selectedOperator === '/' && secondNumber === '0') {
             screen.innerHTML = 'Error';
+            firstNumber = '';
+            secondNumber = '';
+            numberOnScreen = '';
+            total = 0;
         } else {
             screen.innerHTML = '';
             numberOnScreen = '';
