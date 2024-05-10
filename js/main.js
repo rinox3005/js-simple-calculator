@@ -45,19 +45,57 @@ function calcResult() {
     operators();
     equal.addEventListener('click', function () {
         secondNumber = numberOnScreen;
-        if (selectedOperator === '/' && secondNumber === '0') {
-            screen.innerHTML = 'Error';
-            firstNumber = '';
-            secondNumber = '';
-            numberOnScreen = '';
-            total = 0;
-        } else {
-            screen.innerHTML = '';
-            numberOnScreen = '';
-            total = eval(firstNumber + selectedOperator + secondNumber);
-            screen.innerHTML = total;
-            console.log(firstNumber + selectedOperator + secondNumber + '=' + total);
+        switch (selectedOperator) {
+            case '+':
+                total = Number(firstNumber) + Number(secondNumber);
+                screen.innerHTML = '';
+                numberOnScreen = '';
+                screen.innerHTML = total;
+                console.log(firstNumber + '+' + secondNumber + '=' + total);
+                break;
+            case '-':
+                total = Number(firstNumber) - Number(secondNumber);
+                screen.innerHTML = '';
+                numberOnScreen = '';
+                screen.innerHTML = total;
+                console.log(firstNumber + '-' + secondNumber + '=' + total);
+                break;
+            case '*':
+                total = Number(firstNumber) * Number(secondNumber);
+                screen.innerHTML = '';
+                numberOnScreen = '';
+                screen.innerHTML = total;
+                console.log(firstNumber + '*' + secondNumber + '=' + total);
+                break;
+            case '/':
+                if (secondNumber === '0') {
+                    screen.innerHTML = 'Error';
+                    firstNumber = '';
+                    secondNumber = '';
+                    numberOnScreen = '';
+                    total = 0;
+                } else {
+                    total = Number(firstNumber) / Number(secondNumber);
+                    screen.innerHTML = '';
+                    numberOnScreen = '';
+                    screen.innerHTML = total;
+                    console.log(firstNumber + '/' + secondNumber + '=' + total);
+                }
+                break;
         }
+
+        // if (selectedOperator === '/' && secondNumber === '0') {
+        //     screen.innerHTML = 'Error';
+        //     firstNumber = '';
+        //     secondNumber = '';
+        //     numberOnScreen = '';
+        //     total = 0;
+        // } else {
+        //     screen.innerHTML = '';
+        //     numberOnScreen = '';
+        //     screen.innerHTML = total;
+        //     console.log(firstNumber + selectedOperator + secondNumber + '=' + total);
+        // }
     })
 }
 
